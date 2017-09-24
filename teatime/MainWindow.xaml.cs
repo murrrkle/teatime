@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace teatime
 {
@@ -20,9 +21,25 @@ namespace teatime
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool pickedUpTea;
+        private DispatcherTimer orbitTimer;
+        private Vector planets;
         public MainWindow()
         {
             InitializeComponent();
+            orbitTimer = new DispatcherTimer();
+            planets = new Vector();
+            pickedUpTea = false;
+        }
+
+        private void UpdatePlanets()
+        {
+
+        }
+
+        private class Planet : Image
+        {
+
         }
     }
 }

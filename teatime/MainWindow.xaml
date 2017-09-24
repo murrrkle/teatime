@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:teatime"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="720" Width="1280">
+    <Canvas>
+        <Image x:Name="boxy_idle" Height="142" Canvas.Left="625" Canvas.Top="289" Width="142" Source="img/boxy_idle.png"/>
+        <Image x:Name="cursor" Height="142" Canvas.Left="505" Canvas.Top="289" Width="142" Source="img/tea.png" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+    </Canvas>
 </Window>
