@@ -1,4 +1,4 @@
-﻿<Window x:Class="teatime.MainWindow"
+﻿<Window x:Name="mainWindow" x:Class="teatime.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:teatime"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
-    <Canvas>
-        <Image x:Name="boxy_idle" Height="142" Canvas.Left="625" Canvas.Top="289" Width="142" Source="img/boxy_idle.png"/>
-        <Image x:Name="cursor" Height="142" Canvas.Left="505" Canvas.Top="289" Width="142" Source="img/tea.png" RenderTransformOrigin="0.5,0.5">
+    <Canvas x:Name="mainCanvas">
+
+        <Image x:Name="space" Height="722" Width="1333" Source="img/space.jpg" Canvas.Left="-24"/>
+        <Image x:Name="orbits" Height="612" Width="1136" Source="img/orbit-circles.png" Canvas.Left="68" Canvas.Top="60"/>
+
+        <Image x:Name="boxy" Height="142" Canvas.Left="565" Canvas.Top="295" Width="142" Source="img/boxy-idle.png"/>
+        <Image x:Name="cursor" Height="142" Canvas.Left="989" Canvas.Top="261" Width="142" RenderTransformOrigin="0.5,0.5" Source="img/tea.png" IsHitTestVisible="False">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -18,6 +22,18 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
+        <Image x:Name="btn_s1" Height="32" Canvas.Left="620" Canvas.Top="221" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_s2" Height="32" Canvas.Left="750" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_s3" Height="32" Canvas.Left="620" Canvas.Top="480" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_s4" Height="32" Canvas.Left="491" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_m1" Height="32" Canvas.Left="620" Canvas.Top="154" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_m2" Height="32" Canvas.Left="816" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_m3" Height="32" Canvas.Left="620" Canvas.Top="546" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_m4" Height="32" Canvas.Left="423" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_l1" Height="32" Canvas.Left="620" Canvas.Top="70" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_l2" Height="32" Canvas.Left="901" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_l3" Height="32" Canvas.Left="620" Canvas.Top="632" Width="32" Source="img/button-planet.png"/>
+        <Image x:Name="btn_l4" Height="32" Canvas.Left="338" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
 
     </Canvas>
 </Window>
