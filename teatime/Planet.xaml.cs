@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
+
 namespace teatime
 {
     /// <summary>
@@ -22,96 +23,251 @@ namespace teatime
     /// </summary>
     public partial class Planet : UserControl
     {
-        private DispatcherTimer timer;
-
+        
+        private DispatcherTimer timer; // timer that governs when to update the planet's position
 
         public int Size { get; }
         public int Orbit { get; }
         public int Direction { get; }
+        public int Radius { get; }
+        public int Degrees { get; set; }
+
+        // planet size constants
         public const int SMALL = 0;
         public const int MED = 1;
         public const int LARGE = 2;
 
+        private MediaPlayer sound1;
+        private MediaPlayer sound2;
+        private MediaPlayer sound3;
+        private MediaPlayer sound4;
+
+        private int soundLibrary_size;
+        private int soundLibrary_direction;
+
+        //
         private int degreesDelta;
 
-        public int degrees;
-        public int radius;
         public Planet(int PlanetType, int orbitType, int direction)
         {
             InitializeComponent();
-            degrees = 0;
+            this.IsHitTestVisible = false; // should not be able to interact with planets once made
             degreesDelta = 1;
-            radius = 1;
-            this.IsHitTestVisible = false;
+            Degrees = 0;
+            Radius = 1;
             Size = PlanetType;
             Orbit = orbitType;
+
             timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
+
+            
+
+            //choose appropriate image
             switch (PlanetType)
             {
                 case SMALL:
                     image.Source = new BitmapImage(new Uri(@"/img/planet-small.png", UriKind.Relative));
                     timer.Interval = TimeSpan.FromMilliseconds(10);
+                    soundLibrary_size = 0;
                     break;
                 case MED:
                     image.Source = new BitmapImage(new Uri(@"/img/planet-med.png", UriKind.Relative));
                     timer.Interval = TimeSpan.FromMilliseconds(20);
+                    soundLibrary_size = 1;
                     break;
 
                 case LARGE:
                     image.Source = new BitmapImage(new Uri(@"/img/planet-large.png", UriKind.Relative));
                     timer.Interval = TimeSpan.FromMilliseconds(40);
+                    soundLibrary_size = 2;
                     break;
 
                 default:
                     Debug.WriteLine("This shouldn't have happened.");
                     break;
             }
+            
+            //set radius and rate of change in degrees according to orbit distance
             switch (orbitType)
             {
                 case 0:
-                    radius = 130;
+                    Radius = 130;
                     degreesDelta = 3;
                     break;
                 case 1:
-                    radius = 190;
+                    Radius = 190;
                     degreesDelta = 2;
                     break;
                 case 2:
-                    radius = 275;
+                    Radius = 275;
                     degreesDelta = 1;
                     break;
 
             }
 
+            // make sure degrees and initial position match
             switch (direction)
             {
                 case 0:
-                    degrees = 270;
+                    Degrees = 270;
                     break;
                 case 1:
-                    degrees = 0;
+                    Degrees = 0;
                     break;
                 case 2:
-                    degrees = 90;
+                    Degrees = 90;
                     break;
                 case 3:
-                    degrees = 180;
+                    Degrees = 180;
                     break;
             }
+
+            //choose soundlibrary
+            sound1 = new MediaPlayer();
+            sound2 = new MediaPlayer();
+            sound3 = new MediaPlayer();
+            sound4 = new MediaPlayer();
+
+            sound1.MediaEnded += Sound1_MediaEnded;
+            sound2.MediaEnded += Sound2_MediaEnded;
+            sound3.MediaEnded += Sound3_MediaEnded;
+            sound4.MediaEnded += Sound4_MediaEnded;
+
+            soundLibrary_direction = direction;
+
+            
+
+
+            if (soundLibrary_direction == 0)
+            {
+                if (soundLibrary_size == 0)
+                {
+                    //sound1.Open(new Uri(@"../../sounds/small/0/test1.mp3", UriKind.RelativeOrAbsolute));
+                    //sound2.Open(new Uri(@"../../sounds/small/0/test2.mp3", UriKind.RelativeOrAbsolute));
+                }
+                else if (soundLibrary_size == 1)
+                {
+
+                }
+                else if (soundLibrary_size == 2)
+                {
+
+                }
+            }
+            else if (soundLibrary_direction == 1)
+            {
+                if (soundLibrary_size == 0)
+                {
+
+                }
+                else if (soundLibrary_size == 1)
+                {
+
+                }
+                else if (soundLibrary_size == 2)
+                {
+
+                }
+            }
+            else if(soundLibrary_direction == 2)
+            {
+                if (soundLibrary_size == 0)
+                {
+
+                }
+                else if (soundLibrary_size == 1)
+                {
+
+                }
+                else if (soundLibrary_size == 2)
+                {
+
+                }
+            }
+            else if (soundLibrary_direction == 3)
+            {
+                if (soundLibrary_size == 0)
+                {
+
+                }
+                else if (soundLibrary_size == 1)
+                {
+
+                }
+                else if (soundLibrary_size == 2)
+                {
+
+                }
+            }
+        }
+
+        private void Sound4_MediaEnded(object sender, EventArgs e)
+        {
+            ((MediaPlayer)sender).Stop();
+            ((MediaPlayer)sender).Position = TimeSpan.Zero;
+        }
+
+        private void Sound3_MediaEnded(object sender, EventArgs e)
+        {
+            ((MediaPlayer)sender).Stop();
+            ((MediaPlayer)sender).Position = TimeSpan.Zero;
+        }
+
+        private void Sound2_MediaEnded(object sender, EventArgs e)
+        {
+            ((MediaPlayer)sender).Stop();
+            ((MediaPlayer)sender).Position = TimeSpan.Zero;
+        }
+
+        private void Sound1_MediaEnded(object sender, EventArgs e)
+        {
+            ((MediaPlayer)sender).Stop();
+            ((MediaPlayer)sender).Position = TimeSpan.Zero;
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+
             ((MainWindow)App.Current.MainWindow).UpdatePlanetPosition(this);
-            degrees += degreesDelta;
-            if (degrees == 360)
-                degrees = 0;
+
+            Degrees += degreesDelta;
+            if (Degrees == 360)
+                Degrees = 0;
+
+            // play a sound when reaching any of these four points
+            if (Degrees == 0)
+            {
+                //Debug.WriteLine("Degree 0");
+                sound1.Play();
+                
+            }
+            else if (Degrees == 90)
+            {
+                //Debug.WriteLine("Degree 90");
+                sound2.Play();
+            }
+            else if (Degrees == 180)
+            {
+                //Debug.WriteLine("Degree 180");
+                //sound3.Play();
+            }
+            else if (Degrees == 270)
+            {
+                //Debug.WriteLine("Degree 270");
+                //sound4.Play();
+            }
         }
 
         public void BeginOrbit()
         {
             timer.Start();
+        }
+
+        public void StopTimer()
+        {
+            timer.Stop();
         }
     }
 }

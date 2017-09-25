@@ -146,5 +146,19 @@
   <ItemGroup>
     <Resource Include="img\button-planet-hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sounds\large\0\" />
+    <Folder Include="sounds\large\180\" />
+    <Folder Include="sounds\large\270\" />
+    <Folder Include="sounds\large\90\" />
+    <Folder Include="sounds\med\0\" />
+    <Folder Include="sounds\med\180\" />
+    <Folder Include="sounds\med\270\" />
+    <Folder Include="sounds\med\90\" />
+    <Folder Include="sounds\small\0\" />
+    <Folder Include="sounds\small\180\" />
+    <Folder Include="sounds\small\270\" />
+    <Folder Include="sounds\small\90\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
