@@ -116,9 +116,6 @@
     <Resource Include="img\planet-small.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\tea.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\space.jpg" />
@@ -128,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\button-planet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\tea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\button-planet-hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
