@@ -101,13 +101,20 @@ namespace teatime
         private void Boxy_MouseDown(object sender, MouseEventArgs e)
         {
             Point mousePos = e.GetPosition(this);
-            teaPouring = true;
+
             // holdTime = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalMilliseconds;
             //clickTimer.Start();
 
+            PourTea(mousePos);
 
             boxy.Source = new BitmapImage(new Uri(@"/img/boxy-pour.png", UriKind.Relative));
             boxy_status = POURING;
+            
+        }
+
+        private void PourTea(Point mousePos)
+        {
+            teaPouring = true;
             TransformGroup t = new TransformGroup();
             t.Children.Add(new RotateTransform(-45));
             t.Children.Add(new TranslateTransform(mousePos.X - Canvas.GetLeft(cursor) - cursor.Width / 4, mousePos.Y - Canvas.GetTop(cursor) - cursor.Height / 4));
