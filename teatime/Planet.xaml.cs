@@ -19,7 +19,7 @@ namespace teatime
     /// <summary>
     /// Interaction logic for Planet.xaml
     /// </summary>
-    public partial class Planet : Image
+    public partial class Planet : UserControl
     {
         public Planet(int type)
         {

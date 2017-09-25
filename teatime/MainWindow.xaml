@@ -12,21 +12,21 @@
         <Image x:Name="orbits" Height="612" Width="1136" Source="img/orbit-circles.png" Canvas.Left="68" Canvas.Top="60"/>
 
         <Image x:Name="boxy" Height="142" Canvas.Left="565" Canvas.Top="295" Width="142" Source="img/boxy-idle.png"/>
-        
-        <Image x:Name="btn_s1" Height="32" Canvas.Left="620" Canvas.Top="221" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_s2" Height="32" Canvas.Left="750" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_s3" Height="32" Canvas.Left="620" Canvas.Top="480" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_s4" Height="32" Canvas.Left="491" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
-        
-        <Image x:Name="btn_m1" Height="32" Canvas.Left="620" Canvas.Top="154" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_m2" Height="32" Canvas.Left="816" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_m3" Height="32" Canvas.Left="620" Canvas.Top="546" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_m4" Height="32" Canvas.Left="423" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
-        
-        <Image x:Name="btn_l1" Height="32" Canvas.Left="620" Canvas.Top="70" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_l2" Height="32" Canvas.Left="901" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_l3" Height="32" Canvas.Left="620" Canvas.Top="632" Width="32" Source="img/button-planet.png"/>
-        <Image x:Name="btn_l4" Height="32" Canvas.Left="338" Canvas.Top="350" Width="32" Source="img/button-planet.png"/>
+
+        <local:PlanetPoint x:Name="btn_s1" Height="32" Canvas.Left="620" Canvas.Top="221" Width="32" />
+        <local:PlanetPoint x:Name="btn_s2" Height="32" Canvas.Left="750" Canvas.Top="350" Width="32" />
+        <local:PlanetPoint x:Name="btn_s3" Height="32" Canvas.Left="620" Canvas.Top="480" Width="32" />
+        <local:PlanetPoint x:Name="btn_s4" Height="32" Canvas.Left="491" Canvas.Top="350" Width="32" />
+
+        <local:PlanetPoint x:Name="btn_m1" Height="32" Canvas.Left="620" Canvas.Top="154" Width="32" />
+        <local:PlanetPoint x:Name="btn_m2" Height="32" Canvas.Left="816" Canvas.Top="350" Width="32" />
+        <local:PlanetPoint x:Name="btn_m3" Height="32" Canvas.Left="620" Canvas.Top="546" Width="32" />
+        <local:PlanetPoint x:Name="btn_m4" Height="32" Canvas.Left="423" Canvas.Top="350" Width="32" />
+
+        <local:PlanetPoint x:Name="btn_l1" Height="32" Canvas.Left="620" Canvas.Top="70" Width="32" />
+        <local:PlanetPoint x:Name="btn_l2" Height="32" Canvas.Left="901" Canvas.Top="350" Width="32" />
+        <local:PlanetPoint x:Name="btn_l3" Height="32" Canvas.Left="620" Canvas.Top="632" Width="32" />
+        <local:PlanetPoint x:Name="btn_l4" Height="32" Canvas.Left="338" Canvas.Top="350" Width="32" />
 
         <Image x:Name="cursor" Height="142" Canvas.Left="989" Canvas.Top="261" Width="142" Source="img/tea.png" IsHitTestVisible="False">
             <Image.RenderTransform>

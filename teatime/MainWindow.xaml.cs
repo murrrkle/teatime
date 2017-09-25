@@ -27,6 +27,10 @@ namespace teatime
         private Vector planets;
         private Int32 holdTime;
 
+        private const int SMALL = 0;
+        private const int MED = 1;
+        private const int LARGE = 2;
+
         private const int IDLE = 0;
         private const int POURING = 1;
         private const int DRINKING = 2;
@@ -53,7 +57,6 @@ namespace teatime
             boxy.MouseUp += Boxy_MouseUp;
 
             idleTimer.Interval = TimeSpan.FromMilliseconds(1000);
-            BindGuideMouseEvents();
 
         }
 
@@ -127,11 +130,7 @@ namespace teatime
         {
 
         }
-
-        private class Planet : Image
-        {
-
-        }
+        
         private void MakeAllVisible()
         {
             space.Visibility = Visibility.Visible;
@@ -174,158 +173,5 @@ namespace teatime
             btn_l4.Visibility = Visibility.Hidden;
         }
 
-        private void BindGuideMouseEvents()
-        {
-            btn_s1.MouseEnter += Btn_s1_MouseEnter;
-            btn_s2.MouseEnter += Btn_s2_MouseEnter;
-            btn_s3.MouseEnter += Btn_s3_MouseEnter;
-            btn_s4.MouseEnter += Btn_s4_MouseEnter;
-
-            btn_m1.MouseEnter += Btn_m1_MouseEnter;
-            btn_m2.MouseEnter += Btn_m2_MouseEnter;
-            btn_m3.MouseEnter += Btn_m3_MouseEnter;
-            btn_m4.MouseEnter += Btn_m4_MouseEnter;
-
-            btn_l1.MouseEnter += Btn_l1_MouseEnter;
-            btn_l2.MouseEnter += Btn_l2_MouseEnter;
-            btn_l3.MouseEnter += Btn_l3_MouseEnter;
-            btn_l4.MouseEnter += Btn_l4_MouseEnter;
-
-            btn_s1.MouseLeave += Btn_s1_MouseLeave;
-            btn_s2.MouseLeave += Btn_s2_MouseLeave;
-            btn_s3.MouseLeave += Btn_s3_MouseLeave;
-            btn_s4.MouseLeave += Btn_s4_MouseLeave;
-
-            btn_m1.MouseLeave += Btn_m1_MouseLeave;
-            btn_m2.MouseLeave += Btn_m2_MouseLeave;
-            btn_m3.MouseLeave += Btn_m3_MouseLeave;
-            btn_m4.MouseLeave += Btn_m4_MouseLeave;
-
-            btn_l1.MouseLeave += Btn_l1_MouseLeave;
-            btn_l2.MouseLeave += Btn_l2_MouseLeave;
-            btn_l3.MouseLeave += Btn_l3_MouseLeave;
-            btn_l4.MouseLeave += Btn_l4_MouseLeave;
-
-        }
-
-        private void Btn_l4_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_l4.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_l3_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_l3.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_l2_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_l2.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_l1_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_l1.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_m4_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_m4.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_m3_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_m3.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_m2_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_m2.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_m1_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_m1.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_s4_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_s4.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_s3_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_s3.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_s2_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_s2.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_s1_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btn_s1.Source = new BitmapImage(new Uri(@"/img/button-planet.png", UriKind.Relative));
-        }
-
-        private void Btn_l3_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_l3.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_l4_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_l4.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_l2_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_l2.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_l1_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_l1.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_m4_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_m4.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_s4_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_s4.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_s3_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_s3.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_m2_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_m2.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_m3_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_m3.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_m1_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_m1.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_s2_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_s2.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
-
-        private void Btn_s1_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btn_s1.Source = new BitmapImage(new Uri(@"/img/button-planet-hover.png", UriKind.Relative));
-        }
     }
 }
