@@ -41,12 +41,19 @@ namespace teatime
         //Storyboard Animations
         private Storyboard tea_drink;
         public Storyboard tea_pour;
+        public Storyboard idle_bounce;
 
 
-        // is the rhythm maker started yet? 
+        // has the main attraction started yet? 
         private bool started = false;
+        private bool started2 = false;
         private bool teaPouring = false;
-        
+
+        // mediaplayer for boxy's sounds and pouring sound
+        private MediaPlayer player;
+
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -54,7 +61,7 @@ namespace teatime
             InitializePlanetPoints(); // Planet Points are locations where tea can be poured to make a planet, i.e. locations where the button(tea) is enabled
 
             holdTimer = new DispatcherTimer();
-            idleTimer = new DispatcherTimer(); 
+            idleTimer = new DispatcherTimer();
 
             // initializing the placeholder planet's attributes so nothing is null, hopefully
             placeholderPlanetType = Planet.SMALL;
@@ -74,6 +81,9 @@ namespace teatime
             holdTimer.Interval = TimeSpan.FromSeconds(1);
             holdTimer.Tick += HoldTimer_Tick;
 
+            idleTimer.Interval = TimeSpan.FromMilliseconds(1500);
+            idleTimer.Tick += IdleTimer_Tick;
+
             //Storyboard Animations
             tea_drink = this.Resources["teaDrink"] as Storyboard;
             tea_drink.Completed += Tea_drink_Completed;
@@ -81,6 +91,39 @@ namespace teatime
             tea_pour = this.Resources["TeaPour"] as Storyboard;
             tea_pour.Completed += Tea_pour_Completed;
 
+            idle_bounce = this.Resources["idleAnim"] as Storyboard;
+
+            //init for mediaplayer
+            player = new MediaPlayer();
+        }
+
+        private void IdleTimer_Tick(object sender, EventArgs e)
+        {
+            idle_bounce.Begin();
+        }
+
+        private void PlayPourSound()
+        {
+            player.Open(new Uri(@"../../sounds/other/pouring.mp3", UriKind.RelativeOrAbsolute));
+            player.MediaEnded += Player_MediaEnded;
+            player.Play();
+        }
+
+        private void PlayDrinkSound()
+        {
+            player.Open(new Uri(@"../../sounds/other/drinking.mp3", UriKind.RelativeOrAbsolute));
+            player.MediaEnded += Player_MediaEnded;
+            player.Play();
+        }
+
+        private void Player_MediaEnded(object sender, EventArgs e)
+        {
+            player.Stop();
+            player.Position = TimeSpan.Zero;
+            if (teaPouring)
+            {
+                player.Play();
+            }
         }
 
         private void Tea_pour_Completed(object sender, EventArgs e)
@@ -103,6 +146,8 @@ namespace teatime
             // reset all planets
             else
             {
+                idleTimer.Stop();
+                started2 = false;
                 List<Planet> toRemove = new List<Planet>();
                 foreach (var u in mainCanvas.Children)
                 {
@@ -122,9 +167,10 @@ namespace teatime
         private void Boxy_MouseUp(object sender, MouseButtonEventArgs e)
         {
             teaPouring = false;
-
-            //TODO: drinking animation
             boxy.Source = new BitmapImage(new Uri(@"/img/boxy-drink.png", UriKind.Relative));
+            player.Stop();
+            player.Position = TimeSpan.Zero;
+            PlayDrinkSound();
 
         }
 
@@ -138,6 +184,9 @@ namespace teatime
         public static void ChoosePlanet(Point mousePos, int orbitType, int direction)
         {
             PourTea(mousePos);
+            ((MainWindow)App.Current.MainWindow).teaPouring = true;
+            ((MainWindow)App.Current.MainWindow).PlayPourSound();
+
             placeholderPlanetOrbit = orbitType;
             placeholderPlanetDirection = direction;
             placeholderPlanet = new Planet(Planet.SMALL, placeholderPlanetOrbit, placeholderPlanetDirection); // always start small
@@ -459,15 +508,23 @@ namespace teatime
         public static void AddPlanet(int orbitType)
         {
             holdTimer.Stop();
+            ((MainWindow)App.Current.MainWindow).teaPouring = false;
+            ((MainWindow)App.Current.MainWindow).player.Stop();
+            ((MainWindow)App.Current.MainWindow).player.Position = TimeSpan.Zero;
             placeholderPlanetSize = 0;
             placeholderPlanet.BeginOrbit();
+            if (((MainWindow)App.Current.MainWindow).started2 == false)
+            {
+                ((MainWindow)App.Current.MainWindow).idleTimer.Start();
+                ((MainWindow)App.Current.MainWindow).started2 = true;
+            }
         }
 
         // keeps the Button/tea at the cursor's location
         private void MainWindow_MouseMove(object sender, MouseEventArgs e)
         {
             lastReportedCursorLocation = e.GetPosition(this);
-            Debug.WriteLine(lastReportedCursorLocation);
+            //Debug.WriteLine(lastReportedCursorLocation);
             Point mousePos = e.GetPosition(this);
             TranslateTransform transform = new TranslateTransform
             {
@@ -483,11 +540,9 @@ namespace teatime
         {
             Point mousePos = e.GetPosition(this);
             teaPouring = true;
-            //tea_pour.Begin();
             PourTea(mousePos);
             boxy.Source = new BitmapImage(new Uri(@"/img/boxy-pour.png", UriKind.Relative));
-            
-            
+            PlayPourSound();
         }
 
         // Change the tea cursor

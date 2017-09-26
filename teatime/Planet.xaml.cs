@@ -123,7 +123,7 @@ namespace teatime
                     break;
             }
 
-            //choose soundlibrary
+            //choose sounds to use
             sound1 = new MediaPlayer();
             sound2 = new MediaPlayer();
             sound3 = new MediaPlayer();
@@ -136,8 +136,6 @@ namespace teatime
 
             soundLibrary_direction = direction;
             
-
-
             if (soundLibrary_size == 0)
             {
                 if (soundLibrary_direction == 0)
