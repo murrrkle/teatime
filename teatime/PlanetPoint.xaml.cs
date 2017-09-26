@@ -50,7 +50,8 @@ namespace teatime
 
         private void PlanetPoint_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.ChoosePlanet(Type, Direction);
+            Point mousePos = e.GetPosition(this);
+            MainWindow.ChoosePlanet(mousePos, Type, Direction);
         }
 
         private void PlanetPoint_MouseLeave(object sender, MouseEventArgs e)

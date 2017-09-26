@@ -73,13 +73,13 @@ namespace teatime
                     break;
                 case MED:
                     image.Source = new BitmapImage(new Uri(@"/img/planet-med.png", UriKind.Relative));
-                    timer.Interval = TimeSpan.FromMilliseconds(20);
+                    timer.Interval = TimeSpan.FromMilliseconds(10);
                     soundLibrary_size = 1;
                     break;
 
                 case LARGE:
                     image.Source = new BitmapImage(new Uri(@"/img/planet-large.png", UriKind.Relative));
-                    timer.Interval = TimeSpan.FromMilliseconds(40);
+                    timer.Interval = TimeSpan.FromMilliseconds(10);
                     soundLibrary_size = 2;
                     break;
 
@@ -135,69 +135,106 @@ namespace teatime
             sound4.MediaEnded += Sound4_MediaEnded;
 
             soundLibrary_direction = direction;
-
             
 
 
-            if (soundLibrary_direction == 0)
+            if (soundLibrary_size == 0)
             {
-                if (soundLibrary_size == 0)
+                if (soundLibrary_direction == 0)
                 {
-                    //sound1.Open(new Uri(@"../../sounds/small/0/test1.mp3", UriKind.RelativeOrAbsolute));
-                    //sound2.Open(new Uri(@"../../sounds/small/0/test2.mp3", UriKind.RelativeOrAbsolute));
-                }
-                else if (soundLibrary_size == 1)
-                {
+                    sound1.Open(new Uri(@"../../sounds/small/I.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/small/III.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/small/V.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/small/VII.mp3", UriKind.RelativeOrAbsolute));
 
                 }
-                else if (soundLibrary_size == 2)
+                else if (soundLibrary_direction == 1)
                 {
+                    sound1.Open(new Uri(@"../../sounds/small/II.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/small/IV.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/small/VI.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/small/I.mp3", UriKind.RelativeOrAbsolute));
 
+                }
+                else if (soundLibrary_direction == 2)
+                {
+                    sound1.Open(new Uri(@"../../sounds/small/IV.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/small/III.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/small/II.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/small/III.mp3", UriKind.RelativeOrAbsolute));
+                }
+                else if (soundLibrary_direction == 3)
+                {
+                    sound1.Open(new Uri(@"../../sounds/small/I.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/small/VI.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/small/II.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/small/VII.mp3", UriKind.RelativeOrAbsolute));
                 }
             }
-            else if (soundLibrary_direction == 1)
+            else if (soundLibrary_size == 1)
             {
-                if (soundLibrary_size == 0)
+                if (soundLibrary_direction == 0)
                 {
+                    sound1.Open(new Uri(@"../../sounds/med/III.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/med/IV.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/med/I.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/med/II.mp3", UriKind.RelativeOrAbsolute));
 
                 }
-                else if (soundLibrary_size == 1)
+                else if (soundLibrary_direction == 1)
                 {
+                    sound1.Open(new Uri(@"../../sounds/med/VI.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/med/V.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/med/III.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/med/II.mp3", UriKind.RelativeOrAbsolute));
 
                 }
-                else if (soundLibrary_size == 2)
+                else if (soundLibrary_direction == 2)
                 {
-
+                    sound1.Open(new Uri(@"../../sounds/med/V.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/med/II.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/med/VII.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/med/II.mp3", UriKind.RelativeOrAbsolute));
+                }
+                else if (soundLibrary_direction == 3)
+                {
+                    sound1.Open(new Uri(@"../../sounds/med/VII.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/med/VI.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/med/V.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/med/IV.mp3", UriKind.RelativeOrAbsolute));
                 }
             }
-            else if(soundLibrary_direction == 2)
+            else if(soundLibrary_size == 2)
             {
-                if (soundLibrary_size == 0)
+                if (soundLibrary_direction == 0)
                 {
+                    sound1.Open(new Uri(@"../../sounds/large/I.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/large/VI.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/large/V.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/large/II.mp3", UriKind.RelativeOrAbsolute));
 
                 }
-                else if (soundLibrary_size == 1)
+                else if (soundLibrary_direction == 1)
                 {
+                    sound1.Open(new Uri(@"../../sounds/large/III.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/large/IV.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/large/V.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/large/II.mp3", UriKind.RelativeOrAbsolute));
 
                 }
-                else if (soundLibrary_size == 2)
+                else if (soundLibrary_direction == 2)
                 {
-
+                    sound1.Open(new Uri(@"../../sounds/large/VII.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/large/I.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/large/V.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/large/I.mp3", UriKind.RelativeOrAbsolute));
                 }
-            }
-            else if (soundLibrary_direction == 3)
-            {
-                if (soundLibrary_size == 0)
+                else if (soundLibrary_direction == 3)
                 {
-
-                }
-                else if (soundLibrary_size == 1)
-                {
-
-                }
-                else if (soundLibrary_size == 2)
-                {
-
+                    sound1.Open(new Uri(@"../../sounds/large/VI.mp3", UriKind.RelativeOrAbsolute));
+                    sound2.Open(new Uri(@"../../sounds/large/III.mp3", UriKind.RelativeOrAbsolute));
+                    sound3.Open(new Uri(@"../../sounds/large/I.mp3", UriKind.RelativeOrAbsolute));
+                    sound4.Open(new Uri(@"../../sounds/large/V.mp3", UriKind.RelativeOrAbsolute));
                 }
             }
         }
@@ -251,12 +288,12 @@ namespace teatime
             else if (Degrees == 180)
             {
                 //Debug.WriteLine("Degree 180");
-                //sound3.Play();
+                sound3.Play();
             }
             else if (Degrees == 270)
             {
                 //Debug.WriteLine("Degree 270");
-                //sound4.Play();
+                sound4.Play();
             }
         }
 

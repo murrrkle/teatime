@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -24,6 +25,7 @@ namespace teatime
     {
         private DispatcherTimer idleTimer;// plays an idle animation every x milliseconds
 
+        private static Point lastReportedCursorLocation;
 
         // These variables help determine the planet to be added
         private static Planet placeholderPlanet;
@@ -35,12 +37,16 @@ namespace teatime
         private static int initialPositionTop; // initial top coordinate of planet to be added
         private static DispatcherTimer holdTimer; // determines when to make the planet bigger while button is held down (tea is pouring)
 
+
+        //Storyboard Animations
+        private Storyboard tea_drink;
+        public Storyboard tea_pour;
+
+
         // is the rhythm maker started yet? 
         private bool started = false;
-
-        // are you pouring tea right now?
         private bool teaPouring = false;
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -68,19 +74,23 @@ namespace teatime
             holdTimer.Interval = TimeSpan.FromSeconds(1);
             holdTimer.Tick += HoldTimer_Tick;
 
+            //Storyboard Animations
+            tea_drink = this.Resources["teaDrink"] as Storyboard;
+            tea_drink.Completed += Tea_drink_Completed;
+
+            tea_pour = this.Resources["TeaPour"] as Storyboard;
+            tea_pour.Completed += Tea_pour_Completed;
+
         }
 
-        private void Boxy_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Tea_pour_Completed(object sender, EventArgs e)
         {
-            Point mousePos = e.GetPosition(this);
-            TransformGroup t = new TransformGroup();
-            t.Children.Add(new RotateTransform(0));
-            t.Children.Add(new TranslateTransform(mousePos.X - Canvas.GetLeft(cursor) - cursor.Width / 4, mousePos.Y - Canvas.GetTop(cursor) - cursor.Height / 4));
-            cursor.RenderTransform = t;
-           
+            if (teaPouring)
+                tea_pour.Begin();
+        }
 
-            //TODO: drinking animation
-            boxy.Source = new BitmapImage(new Uri(@"/img/boxy-drink.png", UriKind.Relative));
+        private void Tea_drink_Completed(object sender, EventArgs e)
+        {
 
             // change to this after drinking animation is done
             boxy.Source = new BitmapImage(new Uri(@"/img/boxy-happy.png", UriKind.Relative));
@@ -109,6 +119,15 @@ namespace teatime
             }
         }
 
+        private void Boxy_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            teaPouring = false;
+
+            //TODO: drinking animation
+            boxy.Source = new BitmapImage(new Uri(@"/img/boxy-drink.png", UriKind.Relative));
+
+        }
+
         //return the canvas so static methods can do things to it
         public Canvas GetCanvas()
         {
@@ -116,8 +135,9 @@ namespace teatime
         }
 
         // choosing the location/size of a planet to add
-        public static void ChoosePlanet(int orbitType, int direction)
+        public static void ChoosePlanet(Point mousePos, int orbitType, int direction)
         {
+            PourTea(mousePos);
             placeholderPlanetOrbit = orbitType;
             placeholderPlanetDirection = direction;
             placeholderPlanet = new Planet(Planet.SMALL, placeholderPlanetOrbit, placeholderPlanetDirection); // always start small
@@ -446,7 +466,8 @@ namespace teatime
         // keeps the Button/tea at the cursor's location
         private void MainWindow_MouseMove(object sender, MouseEventArgs e)
         {
-            
+            lastReportedCursorLocation = e.GetPosition(this);
+            Debug.WriteLine(lastReportedCursorLocation);
             Point mousePos = e.GetPosition(this);
             TranslateTransform transform = new TranslateTransform
             {
@@ -460,20 +481,26 @@ namespace teatime
         // Pouring tea for Boxy
         private void Boxy_MouseDown(object sender, MouseEventArgs e)
         {
-            PourTea(e);
+            Point mousePos = e.GetPosition(this);
+            teaPouring = true;
+            //tea_pour.Begin();
+            PourTea(mousePos);
             boxy.Source = new BitmapImage(new Uri(@"/img/boxy-pour.png", UriKind.Relative));
             
             
         }
 
         // Change the tea cursor
-        private void PourTea(MouseEventArgs e)
+        private static void PourTea(Point mousePos)
         {
-            Point mousePos = e.GetPosition(this);
-            teaPouring = true;
+            ((MainWindow)App.Current.MainWindow).teaPouring = true;
+            Image cursor = ((MainWindow)App.Current.MainWindow).cursor;
+
             TransformGroup t = new TransformGroup();
             t.Children.Add(new RotateTransform(-45));
-            t.Children.Add(new TranslateTransform(mousePos.X - Canvas.GetLeft(cursor) - cursor.Width / 4, mousePos.Y - Canvas.GetTop(cursor) - cursor.Height / 4));
+            //t.Children.Add(new TranslateTransform(mousePos.X - Canvas.GetLeft(cursor) - cursor.Width / 4, mousePos.Y - Canvas.GetTop(cursor) - cursor.Height / 4));
+            t.Children.Add(new TranslateTransform(lastReportedCursorLocation.X - Canvas.GetLeft(cursor) - cursor.Width / 4, lastReportedCursorLocation.Y - Canvas.GetTop(cursor) - cursor.Height / 4));
+
             cursor.RenderTransform = t;
             // play sound of pouring
             //pouring animation that loops
