@@ -147,77 +147,77 @@
     <Resource Include="img\button-planet-hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="sounds\other\drinking.mp3">
+    <Content Include="sounds\other\drinking.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\other\pouring.mp3">
+    </Content>
+    <Content Include="sounds\other\pouring.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="sounds\large\I.mp3">
+    <Content Include="sounds\large\I.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\large\II.mp3">
+    </Content>
+    <Content Include="sounds\large\II.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\large\III.mp3">
+    </Content>
+    <Content Include="sounds\large\III.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\large\IV.mp3">
+    </Content>
+    <Content Include="sounds\large\IV.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\large\V.mp3">
+    </Content>
+    <Content Include="sounds\large\V.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\large\VI.mp3">
+    </Content>
+    <Content Include="sounds\large\VI.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\large\VII.mp3">
+    </Content>
+    <Content Include="sounds\large\VII.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\med\I.mp3">
+    </Content>
+    <Content Include="sounds\med\I.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\med\II.mp3">
+    </Content>
+    <Content Include="sounds\med\II.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\med\III.mp3">
+    </Content>
+    <Content Include="sounds\med\III.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\med\IV.mp3">
+    </Content>
+    <Content Include="sounds\med\IV.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\med\V.mp3">
+    </Content>
+    <Content Include="sounds\med\V.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\med\VI.mp3">
+    </Content>
+    <Content Include="sounds\med\VI.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\med\VII.mp3">
+    </Content>
+    <Content Include="sounds\med\VII.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\small\I.mp3">
+    </Content>
+    <Content Include="sounds\small\I.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\small\II.mp3">
+    </Content>
+    <Content Include="sounds\small\II.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\small\III.mp3">
+    </Content>
+    <Content Include="sounds\small\III.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\small\IV.mp3">
+    </Content>
+    <Content Include="sounds\small\IV.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\small\V.mp3">
+    </Content>
+    <Content Include="sounds\small\V.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\small\VI.mp3">
+    </Content>
+    <Content Include="sounds\small\VI.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\small\VII.mp3">
+    </Content>
+    <Content Include="sounds\small\VII.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
